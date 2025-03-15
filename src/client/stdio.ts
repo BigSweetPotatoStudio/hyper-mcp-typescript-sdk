@@ -1,5 +1,10 @@
-import { ChildProcess, IOType, spawn } from "node:child_process";
+import { ChildProcess, IOType, spawn as node_spawn } from "node:child_process";
 import process from "node:process";
+import  cross_spawn from "cross-spawn";
+import os from "node:os"
+
+const spawn = os.type() === "Windows_NT" ? cross_spawn : node_spawn;
+
 import { Stream } from "node:stream";
 import { ReadBuffer, serializeMessage } from "../shared/stdio.js";
 import { Transport } from "../shared/transport.js";
